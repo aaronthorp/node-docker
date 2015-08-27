@@ -22,4 +22,4 @@ defaults
 listen app *:80
     mode http
     balance roundrobin{{range service "app"}}
-    server {{.Name}} {{.NodeAddress}}:{{.Port}}{{end}}
+    server {{.ID | replaceAll ":" "_"}} {{.NodeAddress}}:{{.Port}}{{end}}
