@@ -1,6 +1,8 @@
 #/bin/bash
 
 PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
+DOCKER_IP=172.17.42.1
+
 JOIN_IP=node1.thnk.xyz
 
 apt-get update
@@ -18,8 +20,8 @@ docker run \
   -h $HOSTNAME \
   -d \
   --name registrator \
-  --dns 172.17.42.1 \
-  progrium/registrator consul://consul.service.consul:8500
+  --dns $DOCKER_IP \
+  gliderlabs/registrator consul://consul.service.consul:8500
 
 docker run -d -P --name app5 app
 docker run -d -P --name app6 app
