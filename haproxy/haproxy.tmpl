@@ -19,7 +19,11 @@ defaults
     timeout check           10s
     maxconn                 64000
 
-listen app *:80
-    mode http
-    balance roundrobin{{range service "app"}}
+frontend http-proxy
+    bind *:80
+    acl is_www hdr(host) -i app.thnk.xyz
+    default_backend cluster_app
+
+backend cluster_app{{range service "app"}}
+    balance roundrobin
     server {{.ID | replaceAll ":" "_"}} {{.NodeAddress}}:{{.Port}}{{end}}
