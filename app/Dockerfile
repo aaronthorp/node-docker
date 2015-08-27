@@ -11,6 +11,6 @@ RUN cd /opt && tar xzf haproxy-1.5.3.tar.gz
 RUN cd /opt/haproxy-1.5.3 && make TARGET=linux2628 && make install
 ADD haproxy.cfg /opt/haproxy-1.5.3/haproxy.cfg
 ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
-ADD index.js /opt/app
+ADD index.js /opt/app/index.js
 EXPOSE 80
 CMD "/usr/bin/supervisord"
