@@ -40,8 +40,8 @@ docker run -d -P --name app2 app
 docker run -d -P --name app3 app
 docker run -d -P --name app4 app
 
-docker run -it --rm \
+docker run -d \
   -p 80:80 \
   --name haproxy \
   --dns $DOCKER_IP \
-  haproxy bash
+  haproxy
