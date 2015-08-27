@@ -5,7 +5,7 @@ docker run -d \
   -p 8600:53/udp \
   -h node1 \
   --name "consul" \
-  progrium/consul -server -bootstrap -join 128.199.99.237
+  progrium/consul -server -bootstrap -join 128.199.99.237 -client_addr 0.0.0.0
 
 docker run -d \
   --name=registrator \
