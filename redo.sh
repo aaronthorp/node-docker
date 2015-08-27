@@ -1,4 +1,4 @@
 #/bin/bash
-exec kilall.sh && \
-exec build.sh && \
-exec run.sh
+sh killall.sh && \
+sh build.sh && \
+sh run.sh
