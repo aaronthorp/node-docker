@@ -1,6 +1,6 @@
 #/bin/bash
 
-`docker run --rm progrium/consul cmd:run 0.0.0.0::128.199.99.237:0.0.0.0 -d`
+$(docker run --rm progrium/consul cmd:run 0.0.0.0::128.199.99.237:0.0.0.0 -d)
 
 docker run -d \
   --name=registrator \
