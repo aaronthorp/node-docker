@@ -21,9 +21,9 @@ defaults
 
 frontend http-proxy
     bind *:80
-    acl is_www hdr(host) -i app.thnk.xyz
-    default_backend cluster_app
+    acl is_app hdr(host) -i app.thnk.xyz
+    use_backend cluster_app if is_app
 
-backend cluster_app{{range service "app"}}
-    balance roundrobin
+backend cluster_app
+    balance roundrobin{{range service "app"}}
     server {{.ID | replaceAll ":" "_"}} {{.NodeAddress}}:{{.Port}}{{end}}
