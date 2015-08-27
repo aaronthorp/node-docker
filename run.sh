@@ -5,7 +5,7 @@ docker run -d \
   -p 8600:53/udp \
   -h node1 \
   --name "consul" \
-  progrium/consul -server -bootstrap -client_addr 0.0.0.0
+  progrium/consul -server -bootstrap
 
 docker run -d \
   --name=registrator \
