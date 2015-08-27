@@ -11,7 +11,20 @@ curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 docker build -t "app" app/
 docker build -t "haproxy" haproxy/
 
-$(docker run --rm progrium/consul cmd:run $PRIVATE_IP -d -p 8080:8500 --name consul)
+docker run --name consul -h $HOSTNAME \
+	-p 10.176.135.100:8300:8300 \
+  -p 10.176.135.100:8301:8301 \
+  -p 10.176.135.100:8301:8301/udp \
+  -p 10.176.135.100:8302:8302 \
+  -p 10.176.135.100:8302:8302/udp \
+  -p 10.176.135.100:8400:8400 \
+  -p 10.176.135.100:8500:8500 \
+  -p 172.17.42.1:53:53 \
+  -p 172.17.42.1:53:53/udp \
+  -d \
+  -p 8080:8500 \
+  --name consul	\
+  progrium/consul -server -advertise 10.176.135.100 -bootstrap
 
 docker run \
   -v /var/run/docker.sock:/tmp/docker.sock \
@@ -31,3 +44,8 @@ docker run -d \
   --name haproxy \
   --dns 172.17.42.1 \
   haproxy
+
+  docker run -it --rm \
+    -p 80:80 \
+    --name haproxy \
+    haproxy bash
