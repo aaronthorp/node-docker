@@ -9,6 +9,7 @@ apt-get -y install git curl
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
 docker build -t "app" app/
+docker build -t "haproxy" haproxy/
 
 $(docker run --rm progrium/consul cmd:run $PRIVATE_IP -d -p 8080:8500 --name consul)
 
