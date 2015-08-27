@@ -21,4 +21,5 @@ defaults
 
 listen app *:80
     mode http
-    balance roundrobin
+    balance roundrobin{{range .app}}
+    {{.}}{{end}}
