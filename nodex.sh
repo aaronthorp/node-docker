@@ -35,7 +35,7 @@ docker run \
   --dns $DOCKER_IP \
   gliderlabs/registrator consul://consul.service.consul:8500
 
-docker run -d -P --name app5 app
-docker run -d -P --name app6 app
-docker run -d -P --name app7 app
-docker run -d -P --name app8 app
+docker run -d -p $PRIVATE_IP::80 --name app5 app
+docker run -d -p $PRIVATE_IP::80 --name app6 app
+docker run -d -p $PRIVATE_IP::80 --name app7 app
+docker run -d -p $PRIVATE_IP::80 --name app8 app
