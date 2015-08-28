@@ -1,13 +1,14 @@
 #/bin/bash
 
 PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
-DOCKER_IP=$(ifconfig docker0 | awk -F ' *|:' '/inet addr/{print $4}')
 
 apt-get update
 apt-get -y upgrade
 apt-get -y install git curl
 
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+
+DOCKER_IP=$(ifconfig docker0 | awk -F ' *|:' '/inet addr/{print $4}')
 
 docker build -t "app" app/
 docker build -t "haproxy" haproxy/
