@@ -26,4 +26,4 @@ frontend http-proxy
 
 backend cluster_app
     balance roundrobin{{range service "app"}}
-    server {{.ID | replaceAll ":" "_"}} {{.NodeAddress}}:{{.Port}}{{end}}
+    server {{.ID | replaceAll ":" "_"}} {{.Address}}:{{.Port}}{{end}}

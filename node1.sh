@@ -1,7 +1,7 @@
 #/bin/bash
 
 PRIVATE_IP=$(ifconfig eth1 | awk -F ' *|:' '/inet addr/{print $4}')
-DOCKER_IP=172.17.42.1
+DOCKER_IP=$(ifconfig docker0 | awk -F ' *|:' '/inet addr/{print $4}')
 
 apt-get update
 apt-get -y upgrade
